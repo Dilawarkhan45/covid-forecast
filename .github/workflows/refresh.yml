@@ -1,0 +1,22 @@
+name: weekly-refresh
+on:
+  schedule:
+    - cron: "0 6 * * 2"      # every Tuesday 06:00 UTC
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r requirements.txt
+      - run: python live.py
+      - run: |
+          git config user.name "refresh-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/who_weekly.csv models/weekly_model.joblib
+          git commit -m "Weekly data refresh" || echo "no changes"
+          git push
