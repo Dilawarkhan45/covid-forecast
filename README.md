@@ -4,10 +4,10 @@ A machine-learning project that cleans COVID-19 case data, forecasts new cases p
 
 It contains two models:
 
-| Model            | Data                                                                | Predicts                                                | Status                                                          |
-| ---------------- | ------------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------- |
-| **Daily model**  | `covid_19_data.csv` (Johns Hopkins-style, 2020-01-22 to 2021-05-29) | A country's 7-day-average daily new cases, 7 days ahead | Trained and tested                                              |
-| **Weekly model** | WHO weekly global data, downloaded live by `live.py`                | A country's new cases for the next week                 | Code included; check its metrics after you run `python live.py` |
+| Model            | Data                                                                                      | Predicts                                                | Status                                                          |
+| ---------------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------- | --------------------------------------------------------------- |
+| **Daily model**  | Kaggle "Novel Corona Virus 2019 Dataset", `covid_19_data.csv` (2020-01-22 to 2021-05-29)) | A country's 7-day-average daily new cases, 7 days ahead | Trained and tested                                              |
+| **Weekly model** | WHO weekly global data, downloaded live by `live.py`                                      | A country's new cases for the next week                 | Code included; check its metrics after you run `python live.py` |
 
 > **Data note:** The Johns Hopkins feed stopped updating on 10 March 2023, so the daily model is a historical demonstration. The live path uses the WHO weekly file instead.
 
@@ -24,6 +24,14 @@ It contains two models:
 - **Tests and packaging:** pytest suite, Dockerfile, and a scheduled GitHub Actions refresh workflow.
 
 ---
+
+## Dataset
+
+The daily model is trained on `covid_19_data.csv` from the Kaggle **Novel Corona Virus 2019 Dataset**, which compiles case counts from the Johns Hopkins CSSE feed.
+
+- **Source:** [Novel Corona Virus 2019 Dataset](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset) by PASTE-AUTHOR-NAME
+- **File used:** `covid_19_data.csv` (306,429 rows, 22 January 2020 to 29 May 2021)
+- **License:** PASTE-LICENSE-FROM-THE-KAGGLE-PAGE---
 
 ## Results (daily model)
 
@@ -56,7 +64,7 @@ covid-forecast/
 ├── requirements.txt
 ├── Dockerfile
 ├── data/
-│   ├── covid_19_data.csv   # Raw data
+│   ├── covid_19_data.csv   # Raw data (Kaggle Novel Corona Virus 2019 Dataset)
 │   └── country_daily.csv   # Cleaned country-level daily data
 ├── models/
 │   ├── forecast_model.joblib
@@ -79,6 +87,7 @@ python -m venv venv
 source venv/bin/activate          # Windows PowerShell: venv\Scripts\Activate.ps1
 
 pip install -r requirements.txt
+# Download covid_19_data.csv from the Kaggle dataset and place it in data/
 python train.py                   # builds data/country_daily.csv and the daily model
 pytest -q                         # expect all tests to pass
 ```
