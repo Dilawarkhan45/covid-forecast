@@ -29,7 +29,7 @@ It contains two models:
 
 The daily model is trained on `covid_19_data.csv` from the Kaggle **Novel Corona Virus 2019 Dataset**, which compiles case counts from the Johns Hopkins CSSE feed.
 
-- **Source:** [Novel Corona Virus 2019 Dataset](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset) by PASTE-AUTHOR-NAME
+- **Source:** [Novel Corona Virus 2019 Dataset](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset)
 - **File used:** `covid_19_data.csv` (306,429 rows, 22 January 2020 to 29 May 2021)
 - **License:** PASTE-LICENSE-FROM-THE-KAGGLE-PAGE---
 
